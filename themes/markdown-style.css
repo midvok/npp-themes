@@ -1,0 +1,681 @@
+/*******************************************************************************
+ * Theme for NppMarkdownPanel - https://github.com/mohzy83/NppMarkdownPanel
+ *
+ * Author: Michal Dvorak (midvok)
+ * Update:
+ *   [2026-06-03] - Tested with 0.9.1
+ ******************************************************************************/
+:root {
+  --font-family: Cambria, Georgia, "Times New Roman", serif;
+  --font-size: 15px;
+  --line-height: 1.6;
+
+  --code-font-family: Consolas, "Courier New", Courier, monospace;
+  --code-font-size: 13px;
+  --code-line-height: 1.6;
+
+  --radius-small: 3px;
+  --radius-medium: 6px;
+
+  --bg-primary: #fff;
+  --bg-secondary: #f2f3f4;
+
+  --text-normal: #222;
+  --text-muted: #565758;
+  --text-faint: rgba(0, 0, 0, 0.45);
+
+  --text-mark-bg: #ffebaf;
+  --selection: #c4d7f2;
+
+  --border-faint: rgba(0, 0, 0, 0.1);
+  --border-muted: rgba(0, 0, 0, 0.2);
+  --border-normal: #b4b6b8;
+  --border-bold: #787c80;
+
+  --border-divider: #bbb;
+  --border-button: rgba(0, 0, 0, 0.35);
+
+  --table-border: var(--border-normal);
+  --table-border-strong: var(--border-bold);
+  --table-header-bg: #eaedf0;
+  --table-hover-bg: #fff0c3;
+
+  --code-inline-bg: rgba(0, 0, 0, 0.05);
+  --code-inline-fg: #444;
+
+  --code-bg: var(--bg-secondary);
+  --code-fg: var(--text-normal);
+
+  --color-red: #be1708;
+  --color-yellow: #c08000;
+  --color-green: #008c46;
+  --color-blue: #095acc;
+  --color-purple: #a417c0;
+  --color-magenta: #c00b66;
+
+  --color-note: var(--color-blue);
+  --color-tip: var(--color-green);
+  --color-important: var(--color-purple);
+  --color-warning: var(--color-yellow);
+  --color-caution: var(--color-red);
+
+  --code-comment: #878a90;
+  --code-operator: #777a80;
+  --code-red: #a02715;
+  --code-yellow: #be7200;
+  --code-green: #008c46;
+  --code-blue-dark: #0909a0;
+  --code-blue: #095acc;
+  --code-purple: #a20bc0;
+  --code-magenta: #bb124b;
+}
+
+:root {
+  font-size: var(--font-size);
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+
+  background-color: var(--bg-primary);
+  color: var(--text-normal);
+
+  padding: 20px 30px 30px;
+}
+
+body > *:first-child {
+  margin-top: 0 !important;
+}
+body > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+::selection {
+  background-color: var(--selection);
+}
+
+/* === Headings === */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  line-height: 1.25;
+  padding: 0;
+  margin: 2rem 0 0.75rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 1.55rem;
+  color: var(--color-red);
+}
+
+h3 {
+  font-size: 1.35rem;
+  color: var(--color-yellow);
+}
+
+h4 {
+  font-size: 1.175rem;
+  color: var(--color-blue);
+}
+
+h5 {
+  font-size: 1.075rem;
+  color: var(--color-purple);
+}
+
+h6 {
+  font-size: 1rem;
+  color: var(--color-magenta);
+}
+
+h1,
+h2 {
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-divider);
+}
+
+:is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 1rem;
+}
+
+:is(h1, h2, h3, h4, h5, h6) tt,
+:is(h1, h2, h3, h4, h5, h6) code {
+  font-size: 0.86667em;
+  font-weight: normal;
+}
+
+hr {
+  border: 1px solid var(--border-divider);
+  margin: 2rem 0;
+}
+
+/* === Base Text === */
+a {
+  color: var(--color-blue);
+  text-decoration: none;
+}
+a:hover {
+  color: #3056a9;
+  text-decoration: underline;
+}
+a.absent {
+  color: var(--color-red);
+}
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+em,
+em > strong,
+.italic {
+  font-style: italic;
+  color: var(--color-yellow);
+}
+
+strong,
+.bold {
+  font-weight: bold;
+}
+
+del,
+s {
+  color: var(--text-faint);
+}
+
+mark {
+  background-color: var(--text-mark-bg);
+  border-radius: var(--radius-small);
+  padding: 1px 2px;
+}
+
+/* === Block Margins === */
+p {
+  margin: 0.75rem 0 0.75rem;
+}
+p + p {
+  margin-top: 1rem;
+}
+
+pre {
+  margin: 1rem 0 1rem;
+}
+
+blockquote,
+.markdown-alert,
+table {
+  margin: 1.5rem 0 1.5rem;
+}
+
+/* === Lists === */
+ul,
+ol {
+  padding-left: 2rem;
+  margin: 0.75rem 0 1rem;
+}
+
+:is(ul, ol) :is(ul, ol) {
+  margin: 0 0 0.5rem;
+}
+
+li {
+  margin: 0.25rem 0;
+}
+li > p {
+  margin: 0.25rem 0;
+}
+
+ul > li {
+  list-style-type: disc;
+}
+ol > li {
+  list-style-type: decimal;
+}
+ol > li::marker {
+  color: var(--text-faint);
+  font-weight: bold;
+}
+
+/* === Task Lists === */
+li.task-list-item {
+  list-style: none;
+  list-style-type: none;
+  display: flex;
+  margin-left: -1.5rem;
+  gap: 0.5rem;
+  align-items: center;
+}
+li.task-list-item input.task-list-item-checkbox {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+}
+li.task-list-item input::before {
+  display: none;
+}
+
+/* === Description Lists === */
+dl {
+  padding: 0;
+  margin: 1rem 0 1rem;
+}
+
+dl dt {
+  color: var(--text-normal);
+  font-weight: 600;
+  font-style: italic;
+
+  padding: 0;
+  margin: 0.75rem 0 0.25rem;
+}
+
+dl dd {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+dl dd > :first-child {
+  margin-top: 0;
+}
+dl dd > :last-child {
+  margin-bottom: 0;
+}
+
+/* === Inline Code === */
+code,
+tt,
+kbd {
+  display: inline;
+  white-space: nowrap;
+}
+
+code,
+tt {
+  font-family: var(--code-font-family);
+  font-size: var(--code-font-size);
+  line-height: var(--code-line-height);
+  font-weight: normal;
+  font-style: normal;
+
+  background-color: var(--code-inline-bg);
+  color: var(--code-inline-fg);
+
+  border: 1px solid var(--border-faint);
+  border-radius: var(--radius-small);
+  padding: 2px 5px;
+  margin: 0 2px;
+}
+
+kbd {
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  font-size: 0.9333em;
+  font-weight: normal;
+  font-style: normal;
+
+  background-color: var(--code-inline-bg);
+  color: var(--code-inline-fg);
+
+  border: 1px solid var(--border-button);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-small);
+  border-radius: 4px;
+  box-shadow: none;
+  padding: 1px 4px;
+  margin: 0 2px;
+}
+
+/* === Code Blocks <pre><code> === */
+pre {
+  background-color: var(--code-bg);
+  scrollbar-color: transparent;
+  overflow: auto;
+
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--border-muted);
+
+  padding: 0.75rem 1rem;
+}
+
+pre,
+pre code,
+pre tt {
+  font-size: var(--code-font-size);
+  line-height: var(--code-line-height);
+  text-shadow: none;
+  white-space: pre;
+}
+
+pre code,
+pre tt {
+  background-color: inherit;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* === Images === */
+img {
+  display: block;
+  max-width: 100%;
+  margin: 1rem auto;
+}
+
+/* === Image Zoom Effect on Mouse Click === */
+img {
+  cursor: zoom-in;
+  position: relative;
+}
+img:active {
+  cursor: zoom-out;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+
+  border-radius: 0;
+  padding: 0;
+  margin: auto !important;
+
+  background-color: #ddd;
+  /* checked-pattern */
+  background: repeating-conic-gradient(#f0f0f0 0% 25%, #ddd 0% 50%) 0 / 20px 20px;
+
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.8);
+}
+
+/* === Syntax Highlighting === */
+.plainText {
+  background-color: inherit;
+  color: var(--code-fg);
+}
+.htmlServerSideScript {
+  background-color: var(--text-mark-bg);
+}
+.htmlComment {
+  color: var(--code-comment);
+  font-style: italic;
+}
+.htmlTagDelimiter {
+  color: var(--code-purple);
+}
+.htmlElementName {
+  color: var(--code-purple);
+}
+.htmlAttributeName {
+  color: var(--code-yellow);
+}
+.htmlAttributeValue {
+  color: var(--code-red);
+}
+.htmlOperator {
+  color: var(--code-fg);
+}
+.comment {
+  color: var(--code-comment);
+  font-style: italic;
+}
+.xmlDocTag {
+  color: var(--color-green);
+}
+.xmlDocComment {
+  color: var(--code-comment);
+}
+.string {
+  color: var(--color-green);
+}
+.stringCSharpVerbatim {
+  color: var(--code-red);
+}
+.keyword {
+  color: var(--code-blue-dark);
+}
+.preprocessorKeyword {
+  color: var(--code-blue-dark);
+}
+.htmlEntity {
+  color: var(--code-magenta);
+}
+.xmlAttribute {
+  color: var(--code-yellow);
+}
+.xmlAttributeQuotes {
+  color: var(--code-red);
+}
+.xmlAttributeValue {
+  color: var(--code-red);
+}
+.xmlCDataSection {
+  color: var(--code-green);
+}
+.xmlComment {
+  color: var(--code-comment);
+  font-style: italic;
+}
+.xmlDelimiter {
+  color: var(--code-purple);
+}
+.xmlName {
+  color: var(--code-purple);
+}
+.className {
+  color: var(--color-yellow);
+}
+.cssSelector {
+  color: var(--code-purple);
+}
+.cssPropertyName {
+  color: var(--color-yellow);
+}
+.cssPropertyValue {
+  color: var(--code-fg);
+}
+.sqlSystemFunction {
+  color: var(--code-magenta);
+}
+.powershellAttribute {
+  color: #b0e0e6;
+}
+.powershellOperator {
+  color: #808080;
+}
+.powershellType {
+  color: #008080;
+}
+.powershellVariable {
+  color: #ff4500;
+}
+.type {
+  color: #008080;
+}
+.typeVariable {
+  color: #008080;
+  font-style: italic;
+}
+.namespace {
+  color: var(--color-purple);
+}
+.constructor {
+  color: var(--color-purple);
+}
+.predefined {
+  color: var(--code-blue-dark);
+}
+.pseudoKeyword {
+  color: var(--code-blue-dark);
+}
+.stringEscape {
+  color: #808080;
+}
+.controlKeyword {
+  color: var(--code-blue-dark);
+}
+.number {
+}
+.operator {
+  color: var(--code-operator);
+}
+.delimiter {
+}
+.markdownHeader {
+}
+.markdownCode {
+}
+.markdownListItem {
+}
+
+/* === Blockquotes === */
+blockquote {
+  background-color: var(--bg-secondary);
+  color: var(--text-muted);
+  font-style: italic;
+
+  border: 1px solid var(--border-muted);
+  border-left: 5px solid var(--border-bold);
+  border-radius: var(--radius-medium);
+
+  padding: 0.5rem 1rem;
+}
+blockquote > :first-child {
+  margin-top: 0;
+}
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* === Github Alerts === */
+.markdown-alert {
+  color: inherit;
+
+  border: 1px solid var(--border-bold);
+  border-left-width: 5px;
+  border-radius: var(--radius-medium);
+
+  padding: 0.5rem 1rem;
+}
+.markdown-alert > :first-child {
+  margin-top: 0;
+}
+.markdown-alert > :last-child {
+  margin-bottom: 0.25rem;
+}
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  line-height: 1;
+}
+.markdown-alert .markdown-alert-title svg {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+/* Note */
+.markdown-alert.markdown-alert-note {
+  background-color: rgb(from var(--color-note) r g b / 0.1);
+  border-color: rgb(from var(--color-note) r g b / 0.4);
+  border-left-color: rgb(from var(--color-note) r g b / 0.6);
+}
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+/* Tip */
+.markdown-alert.markdown-alert-tip {
+  background-color: rgb(from var(--color-tip) r g b / 0.1);
+  border-color: rgb(from var(--color-tip) r g b / 0.4);
+  border-left-color: rgb(from var(--color-tip) r g b / 0.6);
+}
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+/* Important */
+.markdown-alert.markdown-alert-important {
+  background-color: rgb(from var(--color-important) r g b / 0.1);
+  border-color: rgb(from var(--color-important) r g b / 0.4);
+  border-left-color: rgb(from var(--color-important) r g b / 0.6);
+}
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+/* Warning */
+.markdown-alert.markdown-alert-warning {
+  background-color: rgb(from var(--color-warning) r g b / 0.1);
+  border-color: rgb(from var(--color-warning) r g b / 0.4);
+  border-left-color: rgb(from var(--color-warning) r g b / 0.75);
+}
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+/* Caution */
+.markdown-alert.markdown-alert-caution {
+  background-color: rgb(from var(--color-caution) r g b / 0.1);
+  border-color: rgb(from var(--color-caution) r g b / 0.4);
+  border-left-color: rgb(from var(--color-caution) r g b / 0.6);
+}
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+/* === Tables === */
+table {
+  border-collapse: collapse;
+  padding: 0;
+}
+
+table tr th {
+  background-color: var(--table-header-bg);
+  font-size: 0.95em;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: left;
+
+  border: 1px solid var(--table-border);
+  border-bottom: 2px solid var(--table-border-strong);
+  padding: 6px 12px;
+}
+
+table tr td {
+  border: 1px solid var(--table-border);
+  padding: 4px 12px;
+}
+
+table tr th :first-child,
+table tr td :first-child {
+  margin-top: 0;
+}
+
+table tr th :last-child,
+table tr td :last-child {
+  margin-bottom: 0;
+}
+
+table tr:hover > td {
+  background-color: var(--table-hover-bg);
+}
